@@ -20,24 +20,6 @@ Installing Ops Tool requires three primary software components:
 
 ### Prerequisites
 
-<table>
-  <tr>
-    <td colspan="2"><b>System Requirements</b></td>
-  </tr>
-  <tr>
-    <td><b>Operating System</b></td>
-    <td>Windows 7 and above/4.2 Mac OS X 10.0 and above/Linux</td>
-  </tr>
-  <tr>
-    <td><b>RAM</b></td>
-    <td>> 1.5 Gb</td>
-  </tr>
-  <tr>
-    <td><b>CPU</b></td>
-    <td>2 cores, > 2 GHz</td>
-  </tr>
-</table>
-
 | Software dependencies |  |
 | :--- | ------- |
 | **[Node](https://nodejs.org/en/download/)** | > 16.x.x |
