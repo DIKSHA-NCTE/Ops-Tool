@@ -1,0 +1,67 @@
+{
+  "request": {
+    "type": "filter",
+    "subType": "users-batch-upload-list",
+    "action": "search",
+    "component": "tools",
+    "framework": "*",
+    "rootOrgId": "*",
+    "data": {
+      "templateName": "defaultTemplate",
+      "action": "search",
+      "fields": [
+        {
+          "index": 0,
+          "label": "Tenants",
+          "description": "Choose from a list of tenants",
+          "placeholder": "Choose a Tenant",
+          "property": "channel",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "tenant-search",
+            "body": "{ \"request\": { \"filters\": { \"isRootOrg\": true, \"isTenant\": true }, \"offset\": 0, \"limit\": 1000, \"sort_by\": {}, \"fields\": [\"identifier\", \"orgName\", \"channel\", \"isTenant\", \"isRootOrg\"] } }",
+            "token": true
+          }
+        },
+        {
+          "index": 1,
+          "label": "Creator Email",
+          "description": "Enter creator email",
+          "placeholder": "Enter creator email",
+          "property": "userInfo",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 2,
+          "label": "Status",
+          "description": "Select status",
+          "placeholder": "Select status",
+          "property": "batchStatus",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "constants-search",
+            "body": "{ \"entity\": [\"userUploadStatus\"] }"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,80 @@
+<div class="content">
+  <div class="container-fluid wrapper">
+    <div class="row values" *ngIf="dashboardValues.length > 0">
+      <div class="col-xs-12 col-sm-6 col-lg-3 mt-3 mb-3">
+        <mat-card class="card text-white bg-info d-flex justify-content-center align-items-center">
+          <mat-card-header class="fs-2 lh-sm">{{dashboardValues[0].value}}</mat-card-header>
+          <mat-card-content>
+            <p class="mat-content">{{dashboardValues[0].key}}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-3 mt-3 mb-3">
+        <mat-card class="card text-white bg-primary d-flex justify-content-center align-items-center">
+          <mat-card-header class="fs-2 lh-sm">{{dashboardValues[1].value}}</mat-card-header>
+          <mat-card-content>
+            <p class="mat-content">{{dashboardValues[1].key}}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-3 mt-3 mb-3">
+        <mat-card class="card text-white bg-warning d-flex justify-content-center align-items-center">
+          <mat-card-header class="fs-2 lh-sm">{{dashboardValues[2].value}}</mat-card-header>
+          <mat-card-content>
+            <p class="mat-content">{{dashboardValues[2].key}}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-lg-3 mt-3 mb-3">
+        <mat-card class="card text-white bg-danger d-flex justify-content-center align-items-center">
+          <mat-card-header class="fs-2 lh-sm">{{dashboardValues[3].value}}</mat-card-header>
+          <mat-card-content>
+            <p class="mat-content">{{dashboardValues[3].key}}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid p-0 mt-5 mb-2">
+    <div class="row">
+      <div class="col">
+        <h1>MODULES</h1>
+      </div>
+    </div>
+
+    <div class="row modules" *ngIf="modules.length > 0">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 pb-4" *ngFor="let item of modules">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <a routerLink="{{item.url}}" [queryParams]="{ id:item.id}" class="btn btn-primary btn-lg btn-pill">Explore
+              <i class="material-icons">trending_flat</i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid p-0 mt-5 mb-2" *ngIf="adminModules.length > 0">
+    <div class="row">
+      <div class="col">
+        <h1>ADMIN</h1>
+      </div>
+    </div>
+
+    <div class="row modules" *ngIf="adminModules.length > 0">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 pb-4" *ngFor="let item of adminModules">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <a routerLink="{{item.url}}" [queryParams]="{ id:item.id}" class="btn btn-primary btn-lg btn-pill">Explore
+              <i class="material-icons">trending_flat</i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

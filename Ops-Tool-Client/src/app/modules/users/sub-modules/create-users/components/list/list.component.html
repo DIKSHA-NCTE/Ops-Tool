@@ -1,0 +1,33 @@
+<div class="create-user">
+    <div class="container-fluid wrapper mb-3">
+      <form [formGroup]="createUserForm" (ngSubmit)="createUser()">
+        <div class="row values" *ngIf="filterFields.length > 0">
+          <div class="col-md-6" *ngFor="let field of filterFields">
+            <div *ngIf="field.inputType == 'search'">
+              <app-select-search [appearance]="field.appearance" [label]="field.label" [options]="field.options" [dataType]="field.dataType"
+                [property]="field.property" (getSelectedValue)="onChangeHandler($event)" [placeholder]="field.placeholder"
+                [isMultiple]='field.multiple' [required]='field.required'>
+              </app-select-search>
+            </div>
+            <div *ngIf="field.inputType == 'text'">
+              <app-input-field [appearance]="field.appearance" [label]="field.label" [property]="field.property" [dataType]="field.dataType"
+                [type]="field.inputType" [editable]="field.editable" [required]='field.required' [placeholder]="field.placeholder" [validators]="[]"
+                [invalidError]="" (getSelectedValue)="onChangeHandler($event)">
+              </app-input-field>
+            </div>
+            <div *ngIf="field.inputType == 'password'">
+                <app-input-field [appearance]="field.appearance" [label]="field.label" [property]="field.property" [dataType]="field.dataType"
+                  [type]="field.inputType" [editable]="field.editable" [required]='field.required' [placeholder]="field.placeholder" [validators]="[]"
+                  [invalidError]="" (getSelectedValue)="onChangeHandler($event)">
+                </app-input-field>
+              </div>
+          </div>
+          <div class="col-md-12 text-center">
+            <button type="reset" mat-stroked-button color="warn" class="me-3" (click)="resetForm()">Reset</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="!createUserForm.valid">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -1,0 +1,67 @@
+{
+  "request": {
+    "type": "filter",
+    "subType": "courses",
+    "action": "search",
+    "component": "tools",
+    "framework": "*",
+    "rootOrgId": "*",
+    "data": {
+      "templateName": "defaultTemplate",
+      "action": "search",
+      "fields": [
+        {
+          "index": 0,
+          "label": "Tenants",
+          "description": "Choose from a list of tenants",
+          "placeholder": "Choose a Tenant",
+          "property": "createdFor",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "tenant-search",
+            "body": "{ \"request\": { \"filters\": { \"isRootOrg\": true, \"isTenant\": true }, \"offset\": 0, \"limit\": 1000, \"sort_by\": {}, \"fields\": [\"identifier\", \"orgName\", \"channel\", \"isTenant\", \"isRootOrg\"] } }",
+            "token": true
+          }
+        },
+        {
+          "index": 1,
+          "label": "Course IDs",
+          "description": "Search by Course Ids",
+          "placeholder": "Enter Course Ids",
+          "property": "courseId",
+          "dataType": "array",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 2,
+          "label": "Batch Status",
+          "description": "Search by batch status",
+          "placeholder": "Select batch status",
+          "property": "status",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "constants-search",
+            "body": "{ \"entity\": [\"courseStatus\"] }"
+          }
+        }
+      ]
+    }
+  }
+}

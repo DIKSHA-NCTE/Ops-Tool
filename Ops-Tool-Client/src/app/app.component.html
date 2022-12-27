@@ -1,0 +1,11 @@
+<app-header></app-header>
+<app-loader class="loading" [hidden]="!showLoader"></app-loader>
+<div class="container-fluid container-spacing">
+    <div class="row">
+        <div class="col">
+            <app-breadcrumbs></app-breadcrumbs>
+            <router-outlet></router-outlet>
+        </div>
+      </div>
+</div>
+<app-toaster></app-toaster>

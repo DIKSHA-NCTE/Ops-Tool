@@ -1,0 +1,300 @@
+{
+  "request": {
+    "type": "filter",
+    "subType": "contents",
+    "action": "search",
+    "component": "tools",
+    "framework": "*",
+    "rootOrgId": "*",
+    "data": {
+      "templateName": "defaultTemplate",
+      "action": "search",
+      "fields": [
+        {
+          "index": 0,
+          "label": "Tenants",
+          "description": "Choose from a list of tenants",
+          "placeholder": "Choose a Tenant",
+          "property": "channel",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "tenant-search",
+            "body": "{ \"request\": { \"filters\": { \"isRootOrg\": true, \"isTenant\": true }, \"offset\": 0, \"limit\": 1000, \"sort_by\": {}, \"fields\": [\"identifier\", \"orgName\", \"channel\", \"isTenant\", \"isRootOrg\"] } }",
+            "token": true
+          }
+        },
+        {
+          "index": 1,
+          "label": "Status",
+          "description": "Choose from a list of status",
+          "placeholder": "Choose from a Status",
+          "property": "status",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "constants-search",
+            "body": "{ \"entity\": [\"contentStatus\"] }"
+          }
+        },
+        {
+          "index": 2,
+          "label": "Content ID",
+          "description": "Search by content identifier",
+          "placeholder": "Enter comma seperated content IDs",
+          "property": "identifier",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 3,
+          "label": "Origin ID",
+          "description": "Search shallow copy contents",
+          "placeholder": "Search shallow copy contents",
+          "property": "origin",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 4,
+          "label": "Content Name",
+          "description": "Search by content name",
+          "placeholder": "Search by content name",
+          "property": "name",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 5,
+          "label": "Board",
+          "description": "Choose from a list of boards",
+          "placeholder": "Choose a Board",
+          "property": "board",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "board-search",
+            "body": "{ \"entity\": [\"board\"] }"
+          }
+        },
+        {
+          "index": 6,
+          "label": "Medium",
+          "description": "Choose from a list of mediums",
+          "placeholder": "Choose a Medium",
+          "property": "medium",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "medium-search",
+            "body": "{ \"entity\": [\"medium\"] }"
+          }
+        },
+        {
+          "index": 7,
+          "label": "Grade",
+          "description": "Choose from a list of grades",
+          "placeholder": "Choose a Grade",
+          "property": "gradeLevel",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "grade-search",
+            "body": "{ \"entity\": [\"grade\"] }"
+          }
+        },
+        {
+          "index": 8,
+          "label": "Subject",
+          "description": "Choose from a list of subjects",
+          "placeholder": "Choose a Subject",
+          "property": "subject",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "subject-search",
+            "body": "{ \"entity\": [\"subject\"] }"
+          }
+        },
+        {
+          "index": 9,
+          "label": "Created On (Range)",
+          "description": "Choose from a date range",
+          "placeholder": "Choose from a date range",
+          "property": "createdOn",
+          "dataType": "string",
+          "inputType": "date",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 10,
+          "label": "Last Published On (Range)",
+          "description": "Choose from a date range",
+          "placeholder": "Choose from a date range",
+          "property": "lastPublishedOn",
+          "dataType": "string",
+          "inputType": "date",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 11,
+          "label": "Content Type",
+          "description": "Choose from a list of content types",
+          "placeholder": "Choose a content type",
+          "property": "contentType",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "content_type-search",
+            "body": "{ \"entity\": [\"content_type\"] }"
+          }
+        },
+        {
+          "index": 12,
+          "label": "Mime Type",
+          "description": "Choose from a list of mimetypes",
+          "placeholder": "Choose a mime type",
+          "property": "mimeType",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "mime_type-search",
+            "body": "{ \"entity\": [\"mime_type\"] }"
+          }
+        },
+        {
+          "index": 13,
+          "label": "Primary Category",
+          "description": "Choose from a list of primary categories",
+          "placeholder": "Choose a primary category",
+          "property": "primaryCategory",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "primaryCategory-search",
+            "body": "{ \"entity\": [\"primaryCategory\"] }"
+          }
+        },
+        {
+          "index": 14,
+          "label": "Additional Categories",
+          "description": "Choose from a list of additional categories",
+          "placeholder": "Choose a additional category",
+          "property": "additionalCategories",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "additionalCategories-search",
+            "body": "{ \"entity\": [\"additionalCategories\"] }"
+          }
+        },
+        {
+          "index": 15,
+          "label": "Created For",
+          "description": "Choose from a list of tenants",
+          "placeholder": "Choose created for value",
+          "property": "createdFor",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "tenant-search",
+            "body": "{ \"request\": { \"filters\": { \"isRootOrg\": true, \"isTenant\": true }, \"offset\": 0, \"limit\": 1000, \"sort_by\": {}, \"fields\": [\"identifier\", \"orgName\", \"channel\", \"isTenant\", \"isRootOrg\"] } }",
+            "token": true
+          }
+        },
+        {
+          "index": 16,
+          "label": "Created By (User ID)",
+          "description": "Search by User ID (Created By)",
+          "placeholder": "Search by User ID (Created By)",
+          "property": "createdBy",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        }
+      ]
+    }
+  }
+}

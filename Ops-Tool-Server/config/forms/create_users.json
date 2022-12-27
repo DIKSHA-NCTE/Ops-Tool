@@ -1,0 +1,145 @@
+{
+  "request": {
+    "type": "input",
+    "subType": "users",
+    "action": "create",
+    "component": "tools",
+    "framework": "*",
+    "rootOrgId": "*",
+    "data": {
+      "templateName": "defaultTemplate",
+      "action": "create",
+      "fields": [
+        {
+          "index": 0,
+          "label": "Tenants",
+          "description": "Choose from a list of tenants",
+          "placeholder": "Choose a Tenant",
+          "property": "organisationId",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "multiple": false,
+          "appearance": "fill",
+          "api": {
+            "type": "tenant-search",
+            "body": "{ \"request\": { \"filters\": { \"isRootOrg\": true, \"isTenant\": true }, \"offset\": 0, \"limit\": 1000, \"sort_by\": {}, \"fields\": [\"identifier\", \"orgName\", \"channel\", \"isTenant\", \"isRootOrg\"] } }",
+            "token": true
+          }
+        },
+        {
+          "index": 1,
+          "label": "Roles",
+          "description": "Choose from a list of roles",
+          "placeholder": "Select roles",
+          "property": "roles",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": true,
+          "appearance": "fill",
+          "api": {
+            "type": "constants-search",
+            "body": "{ \"entity\": [\"role\"] }"
+          }
+        },
+        {
+          "index": 2,
+          "label": "First Name",
+          "description": "First Name",
+          "placeholder": "Enter first name",
+          "property": "firstName",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "multiple": false,
+          "appearance": "fill"
+        },
+        {
+          "index": 3,
+          "label": "Last Name",
+          "description": "Last Name",
+          "placeholder": "Enter last name",
+          "property": "lastName",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "appearance": "fill"
+        },
+        {
+          "index": 4,
+          "label": "Email",
+          "description": "Email",
+          "placeholder": "Enter email",
+          "property": "email",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "appearance": "fill"
+        },
+        {
+          "index": 5,
+          "label": "Mobile No.",
+          "description": "Mobile No.",
+          "placeholder": "Enter mobile no.",
+          "property": "phone",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "appearance": "fill"
+        },
+        {
+          "index": 6,
+          "label": "Username",
+          "description": "Username",
+          "placeholder": "Enter username",
+          "property": "userName",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "appearance": "fill"
+        },
+        {
+          "index": 7,
+          "label": "Password",
+          "description": "Password",
+          "placeholder": "Enter password",
+          "property": "password",
+          "dataType": "string",
+          "inputType": "password",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "appearance": "fill"
+        }
+      ]
+    }
+  }
+}

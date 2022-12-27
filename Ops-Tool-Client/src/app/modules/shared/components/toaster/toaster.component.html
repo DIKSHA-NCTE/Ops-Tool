@@ -1,0 +1,9 @@
+<div *ngFor="let toast of toasts; let i=index">
+  <div class="toast toast-{{toast.type}}" [ngClass]="{'show': toasts.length > 0}" [style.bottom.px]="i*100">
+    <h4 class="toast-heading">{{toast.title}}</h4>
+    <p>{{toast.body}}</p>
+    <a class="close" (click)="remove(i)">
+        <i class="material-icons">highlight_off</i>
+    </a>
+  </div>
+</div>

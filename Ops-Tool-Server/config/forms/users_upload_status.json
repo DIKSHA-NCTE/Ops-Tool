@@ -1,0 +1,44 @@
+{
+  "request": {
+    "type": "filter",
+    "subType": "users-upload-status",
+    "action": "search",
+    "component": "tools",
+    "framework": "*",
+    "rootOrgId": "*",
+    "data": {
+      "templateName": "defaultTemplate",
+      "action": "search",
+      "fields": [
+        {
+          "index": 0,
+          "label": "Org. Admin Email",
+          "description": "Enter org admin email",
+          "placeholder": "Enter org admin email",
+          "property": "username",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "multiple": false
+        },
+        {
+          "index": 1,
+          "label": "Process ID",
+          "description": "Enter process id",
+          "placeholder": "Enter process id",
+          "property": "id",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "multiple": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "request": {
+    "type": "filter",
+    "subType": "selfsignupusers",
+    "action": "search",
+    "component": "tools",
+    "framework": "*",
+    "rootOrgId": "*",
+    "data": {
+      "templateName": "defaultTemplate",
+      "action": "search",
+      "fields": [
+        {
+          "index": 0,
+          "label": "Tenants",
+          "description": "Choose from a list of tenants",
+          "placeholder": "Choose a Tenant",
+          "property": "slug",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "multiple": false,
+          "api": {
+            "type": "tenant-search",
+            "body": "{ \"request\": { \"filters\": { \"isRootOrg\": true, \"isTenant\": true }, \"offset\": 0, \"limit\": 1000, \"sort_by\": {}, \"fields\": [\"identifier\", \"orgName\", \"channel\", \"isTenant\", \"isRootOrg\"] } }",
+            "token": true
+          }
+        }
+      ]
+    }
+  }
+}

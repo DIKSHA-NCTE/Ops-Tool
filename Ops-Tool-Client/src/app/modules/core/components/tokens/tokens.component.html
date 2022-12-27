@@ -1,0 +1,44 @@
+<h2 mat-dialog-title class="popup-title">User Token
+  <i class="material-icons close-icon" [mat-dialog-close]="true" cdkFocusInitial>highlight_off</i>
+  <i class="material-icons token-refresh" (click)="RefreshTokenByLogOut()"
+    title="By clicking the refresh icon, You will need to re-login to access the system">refresh</i>
+</h2>
+<form [formGroup]="tokenForm" [hidden]="!displayFields">
+  <mat-dialog-content class="mat-typography pt-2">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 col-sm-12">
+        <div class="w-100 py-2">
+          <label id="tokens-radio-group-label">Get the user token for:</label>
+          <mat-radio-group aria-labelledby="tokens-radio-group-label" formControlName="tokenFor">
+            <mat-radio-button value="1">Self</mat-radio-button>
+            <mat-radio-button value="2">Others</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="py-2" *ngIf="tokenForm.value.tokenFor == '2'">
+          <mat-form-field class="w-100">
+            <mat-label>E-mail / User Name / Phone Number</mat-label>
+            <input matInput placeholder="john.doe@ab.com / abcdef / 9876543210" formControlName="value"
+              (focusout)="getSelfToken()" (keydown.enter)="getSelfToken()">
+            <mat-error *ngIf="tokenForm.controls.value.hasError('required')">Please input a valid email or user name or
+              phone number</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</form>
+<div *ngIf="userToken.token!=''" class="row">
+  <div class="col-md-8 offset-md-2 col-sm-12">
+    <label><b>Access Token :</b></label>
+    <mat-form-field class="w-100" appearance="fill">
+      <input matInput [value]="userToken.token" class="token-box" readonly>
+      <i class="material-icons copy-clipboard" matSuffix (click)="copyText(userToken.token)">content_copy</i>
+    </mat-form-field>
+    <label><b>Refresh Token :</b></label>
+    <mat-form-field class="w-100" appearance="fill">
+      <input matInput [value]="userToken.refresh_token" class="token-box" readonly>
+      <i class="material-icons copy-clipboard" matSuffix (click)="copyText(userToken.refresh_token)">content_copy</i>
+    </mat-form-field>
+    <p>The token expires on - {{userToken.expires}}</p>
+  </div>
+</div>

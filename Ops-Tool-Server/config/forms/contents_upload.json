@@ -1,0 +1,95 @@
+{
+  "request": {
+    "type": "upload",
+    "subType": "contents",
+    "action": "create",
+    "component": "tools",
+    "framework": "*",
+    "rootOrgId": "*",
+    "data": {
+      "templateName": "defaultTemplate",
+      "action": "create",
+      "fields": [
+        {
+          "index": 0,
+          "label": "Tenants",
+          "description": "Choose from a list of tenants",
+          "placeholder": "Choose a Tenant",
+          "property": "id",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "multiple": false,
+          "api": {
+            "type": "tenant-search",
+            "body": "{ \"request\": { \"filters\": { \"isRootOrg\": true, \"isTenant\": true }, \"offset\": 0, \"limit\": 1000, \"sort_by\": {}, \"fields\": [\"identifier\", \"orgName\", \"channel\", \"isTenant\", \"isRootOrg\"] } }",
+            "token": true
+          }
+        },
+        {
+          "index": 1,
+          "label": "Upload contents using",
+          "description": "Upload contents using",
+          "placeholder": "Upload contents using",
+          "property": "usersearchType",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "multiple": false,
+          "api": {
+            "type": "constants-search",
+            "body": "{ \"entity\": [\"usersearchType\"] }"
+          }
+        },
+        {
+          "index": 2,
+          "label": "Creator Email/Username",
+          "description": "Enter creator email/username",
+          "placeholder": "Enter creator email/username",
+          "property": "userInfo",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "multiple": false
+        },
+        {
+          "index": 3,
+          "label": "Framework ID",
+          "description": "Enter framework id",
+          "placeholder": "Enter framework id",
+          "property": "frameworkId",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": false,
+          "required": true,
+          "multiple": false
+        },
+        {
+          "index": 4,
+          "label": "Excel File",
+          "description": "Attach Excel File",
+          "placeholder": "Choose File",
+          "property": "file",
+          "dataType": "string",
+          "inputType": "file",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "multiple": false
+        }
+      ]
+    }
+  }
+}

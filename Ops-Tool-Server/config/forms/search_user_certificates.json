@@ -1,0 +1,58 @@
+{
+  "request": {
+    "type": "filter",
+    "subType": "user-certificates",
+    "action": "search",
+    "component": "tools",
+    "framework": "*",
+    "rootOrgId": "*",
+    "data": {
+      "templateName": "defaultTemplate",
+      "action": "search",
+      "fields": [
+        {
+          "index": 0,
+          "label": "Username",
+          "description": "Enter username",
+          "placeholder": "Enter username",
+          "property": "userName",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 1,
+          "label": "Email",
+          "description": "Enter email",
+          "placeholder": "Enter email",
+          "property": "email",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 2,
+          "label": "Phone Number",
+          "description": "Enter phone number",
+          "placeholder": "Enter phone number",
+          "property": "phone",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        }
+      ]
+    }
+  }
+}

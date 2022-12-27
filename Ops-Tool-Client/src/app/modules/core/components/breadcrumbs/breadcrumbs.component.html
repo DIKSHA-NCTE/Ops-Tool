@@ -1,0 +1,8 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs[0].label; let i=index;"
+    [ngClass]="{'active': (i+1) === breadcrumbs[0].label.length}">
+    <a *ngIf="breadcrumb.active" routerLinkActive="router-link-active" [innerHTML]="breadcrumb.label"></a>
+    <a *ngIf="!breadcrumb.active && breadcrumb.url.includes('dashboard')" [routerLink]="breadcrumb.url" routerLinkActive="router-link-active" [innerHTML]="breadcrumb.label"></a>
+    <a *ngIf="!breadcrumb.active && moduleId && !(breadcrumb.url.includes('dashboard'))" [routerLink]="breadcrumb.url" [queryParams]="{id: moduleId}" routerLinkActive="router-link-active" [innerHTML]="breadcrumb.label"></a>
+  </li>
+</ol>

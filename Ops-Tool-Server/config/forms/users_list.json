@@ -1,0 +1,123 @@
+{
+  "request": {
+    "type": "filter",
+    "subType": "users",
+    "action": "search",
+    "component": "tools",
+    "framework": "*",
+    "rootOrgId": "*",
+    "data": {
+      "templateName": "defaultTemplate",
+      "action": "search",
+      "fields": [
+        {
+          "index": 0,
+          "label": "Tenants",
+          "description": "Choose from a list of tenants",
+          "placeholder": "Choose a Tenant",
+          "property": "rootOrgId",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "tenant-search",
+            "body": "{ \"request\": { \"filters\": { \"isRootOrg\": true, \"isTenant\": true }, \"offset\": 0, \"limit\": 1000, \"sort_by\": {}, \"fields\": [\"identifier\", \"orgName\", \"channel\", \"isTenant\", \"isRootOrg\"] } }",
+            "token": true
+          }
+        },
+        {
+          "index": 1,
+          "label": "Name",
+          "description": "Search by user's name",
+          "placeholder": "Search by user's name",
+          "property": "name",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 2,
+          "label": "User ID",
+          "description": "Search by user identifier",
+          "placeholder": "Search by user identifier",
+          "property": "userId",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 3,
+          "label": "Roles",
+          "description": "Choose from a list of roles",
+          "placeholder": "Select roles",
+          "property": "roles",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "constants-search",
+            "body": "{ \"entity\": [\"role\"] }"
+          }
+        },
+        {
+          "index": 4,
+          "label": "E-mail",
+          "description": "Search by user's email",
+          "placeholder": "Search by user's email",
+          "property": "email",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 5,
+          "label": "Phone Number",
+          "description": "Search by user's phone number",
+          "placeholder": "Search by user's phone number",
+          "property": "phone",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 6,
+          "label": "Username/Diksha ID",
+          "description": "Search by username",
+          "placeholder": "Enter Username/Diksha ID",
+          "property": "userName",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        }
+      ]
+    }
+  }
+}

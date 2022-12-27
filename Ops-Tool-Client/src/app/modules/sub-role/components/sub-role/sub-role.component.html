@@ -1,0 +1,47 @@
+<div class="subRoleConfig">
+  <div class="container-fluid wrapper mb-3">
+    <div class="row">
+      <div class="col-12 p-0 mb-3">
+        <span class="keywords add" *ngFor="let item of newSubrole; index as i"><mat-icon>add</mat-icon>Subrole{{i+1}} - Label: {{item.label}}, Value: {{item.value}}
+          <mat-icon (click)="clearFieldsAdd(i)" class="pointer">close</mat-icon>
+        </span>
+      </div>
+      <div class="col-12 p-0 mb-3">
+        <span class="keywords remove" *ngFor="let item of removed; index as i"><mat-icon>remove</mat-icon>Subrole{{i+1}} - Label: {{item.label}}, Value: {{item.value}}
+          <!-- <mat-icon (click)="clearFieldsRemove(item)" class="pointer">close</mat-icon> -->
+        </span>
+      </div>
+    </div>
+    <form [formGroup]="subRoleUpdateForm" (ngSubmit)="updateSubRole()">
+      <div class="row values" *ngIf="filterFields.length > 0">
+        <div class="col-md-4" *ngFor="let field of filterFields">
+          <div *ngIf="field.inputType == 'search' && field.property !== 'subRoles'">
+            <app-select-search [label]="field.label" [options]="field.options" [dataType]="field.dataType"
+              [property]="field.property" [appearance]="field.appearance" (getSelectedValue)="onChangeHandler($event)" [placeholder]="field.placeholder"
+              [isMultiple]='field.multiple' [required]='field.required'>
+            </app-select-search>
+          </div>
+          <div *ngIf="field.inputType == 'search' && field.property === 'subRoles'">
+            <app-select-search [label]="field.label" [options]="existingSubRoles" [dataType]="field.dataType"
+              [property]="field.property" [editable]="field.editable" [appearance]="field.appearance" (getSelectedValue)="onChangeHandler($event)" [placeholder]="field.placeholder"
+              [isMultiple]='field.multiple' [required]='field.required'>
+            </app-select-search>
+          </div>
+          <div *ngIf="field.inputType == 'text'">
+            <app-input-field [label]="field.label" [property]="field.property" [dataType]="field.dataType"
+              [type]="field.inputType" [appearance]="field.appearance" [editable]="field.editable" [required]='field.required' [placeholder]="field.placeholder" [validators]="[]"
+              [invalidError]="" (getSelectedValue)="onChangeHandler($event)">
+            </app-input-field>
+          </div>
+        </div>
+        <div class="row values col-md-2">
+          <button type="button" class="addBtn" [disabled]="!subRoleUpdateForm.valid" mat-fab color="primary" (click)="addSubRole()">Add</button>
+        </div>
+        <div class="col-md-12 text-center">
+          <button type="reset" mat-stroked-button color="warn" class="me-3" (click)="resetForm()">Reset</button>
+          <button type="submit" mat-raised-button color="primary" [disabled]="!subRoleUpdateForm.valid">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

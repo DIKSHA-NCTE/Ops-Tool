@@ -1,0 +1,99 @@
+{
+  "request": {
+    "type": "input",
+    "subType": "sub-role",
+    "action": "update",
+    "component": "tools",
+    "framework": "*",
+    "rootOrgId": "*",
+    "data": {
+      "templateName": "defaultTemplate",
+      "action": "update",
+      "fields": [
+        {
+          "index": 0,
+          "label": "State",
+          "description": "Choose from a list of states",
+          "placeholder": "Choose a State",
+          "property": "state",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "multiple": false,
+          "appearance": "fill",
+          "api": {
+            "type": "state-search",
+            "body": "{\"request\":{\"filters\":{\"type\":\"state\"},\"sort_by\":{},\"limit\":1000}}"
+          }
+        },
+        {
+          "index": 1,
+          "label": "Role",
+          "description": "Choose from a list of roles",
+          "placeholder": "Choose a Role",
+          "property": "role",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "multiple": false,
+          "appearance": "fill",
+          "api": {
+            "type": "constants-search",
+            "body": "{ \"entity\": [\"UserRole\"] }"
+          }
+        },
+        {
+          "index": 2,
+          "label": "Sub Roles",
+          "description": "Sub Roles",
+          "placeholder": "Sub Roles",
+          "property": "subRoles",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": false,
+          "required": false,
+          "multiple": true,
+          "appearance": "fill"
+        },
+        {
+          "index": 3,
+          "label": "Sub-role Label",
+          "description": "Sub-role Label",
+          "placeholder": "Enter sub-role label",
+          "property": "label",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "appearance": "fill"
+        },
+        {
+          "index": 4,
+          "label": "Sub-role Value",
+          "description": "Sub-role Value",
+          "placeholder": "Enter sub-role value",
+          "property": "value",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "appearance": "fill"
+        }
+      ]
+    }
+  }
+}

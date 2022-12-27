@@ -1,0 +1,61 @@
+<div class="uploadShallowCopy">
+    <div class="container-fluid wrapper mb-3">
+      <div class="row">
+        <div class="col-12 p-0 mb-3">
+          <span class="keywords" *ngFor="let key of payload | keyvalue">{{key.key | titlecase}}: {{getKeyValueTypes(key)}}
+            <mat-icon (click)="clearFields(key)" class="pointer">close</mat-icon>
+          </span>
+        </div>
+      </div>
+      <form [formGroup]="shallowCopyUploadForm">
+        <div class="row values" *ngIf="filterFields.length > 0">
+          <div class="col-md-3" *ngFor="let field of filterFields">
+            <div *ngIf="field.inputType == 'search'">
+              <app-select-search [label]="field.label" [options]="field.options" [dataType]="field.dataType"
+                [property]="field.property" (getSelectedValue)="onChangeHandler($event)" [placeholder]="field.placeholder"
+                [isMultiple]='field.multiple' [required]='field.required'>
+              </app-select-search>
+            </div>
+            <div *ngIf="field.inputType == 'text'">
+              <app-input-field [label]="field.label" [property]="field.property" [dataType]="field.dataType"
+                [type]="field.inputType" [editable]="field.editable" [required]='field.required' [placeholder]="field.placeholder" [validators]="[]"
+                [invalidError]="" [editable]="field.editable" (getSelectedValue)="onChangeHandler($event)">
+              </app-input-field>
+            </div>
+            <div *ngIf="field.inputType == 'date'">
+              <app-date-range-picker [label]="field.label" [property]="field.property" [dataType]="field.dataType"
+                [required]='field.required' (getSelectedValue)="onChangeHandler($event)"></app-date-range-picker>
+            </div>
+            <div *ngIf="field.inputType == 'file'">
+              <app-file [label]="field.label" [property]="field.property" [dataType]="field.dataType"
+                [required]='field.required' (getSelectedValue)="onChangeHandler($event)"></app-file>
+            </div>
+          </div>
+          <div class="col-md-12 text-center">
+            <button type="reset" mat-stroked-button color="warn" class="me-3" (click)="resetForm()">Reset</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="!shallowCopyUploadForm.valid" (click)="onUpload()">Upload</button>
+          </div>
+        </div>
+      </form>
+      <small class="form-text text-muted">
+        Click
+        <a href="../../../../../../../assets/content-bulk-tool/sample-shallow-copy.xlsx" class="btn-link">here</a> to download
+        sample excel file
+      </small>
+    </div>
+  </div>
+  <ng-template #popupTemplate let-data>
+    <div class="row">
+      <div class="col-md-10">
+        <h2 mat-dialog-title> Process ID: {{data.processId}} </h2>
+      </div>
+      <div class="col-md-2">
+        <button mat-raised-button [cdkCopyToClipboard]="processId" [cdkCopyToClipboardAttempts]="5" class="copy_button"><mat-icon>content_copy</mat-icon></button>
+      </div>
+    </div>
+    <div>Please save the Process ID for your reference. You can track the progress with Process ID</div>
+    <div mat-dialog-actions style="justify-content: center;">
+      <button mat-button color="warn" mat-dialog-close>Close</button>
+    </div>
+  </ng-template>
+  

@@ -1,0 +1,16 @@
+<mat-form-field class="w-100" [hidden]="!visible" [appearance]="appearance">
+  <mat-label>{{label}} <span [hidden]="!required">*</span></mat-label>
+  <input *ngIf="label!='Password'" [type]="type" matInput [formControl]="inputFormControl" [errorStateMatcher]="matcher"
+    [placeholder]="placeholder" [disabled]="!editable" (input)="getSelectedData($event)">
+  <input *ngIf="label=='Password'" [type]="showPassword ? 'text' : 'password'" matInput [formControl]="inputFormControl" [errorStateMatcher]="matcher"
+    [placeholder]="placeholder" [disabled]="!editable" (input)="getSelectedData($event)">
+  <mat-error *ngIf="inputFormControl.hasError('email') && !inputFormControl.hasError('required')">
+    {{invalidError}}
+  </mat-error>
+  <mat-error *ngIf="inputFormControl.hasError('required')">
+    {{label}} is <strong>required</strong>
+  </mat-error>
+  <mat-icon *ngIf="type == 'password'" matSuffix (click)="togglePasswordVisibility()">
+    {{showPassword?'visibility':'visibility_off'}}
+  </mat-icon>
+</mat-form-field>

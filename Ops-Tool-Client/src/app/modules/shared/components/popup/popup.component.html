@@ -1,0 +1,13 @@
+<ng-template #popupTemplate>
+    <h1> Get Exhaust Reports for BatchId {{batchId}} </h1>
+    <div class="mat-app-background basic-container">
+    <mat-tab-group>
+      <mat-tab label="Get Progress Exhaust Report"> <app-card [dataSource]="progressExhaustArr"></app-card> </mat-tab>
+      <mat-tab label="Get User-Info Exhaust Report"> <app-card></app-card> </mat-tab>
+      <mat-tab label="Get Response Exhaust Report"> <app-card></app-card> </mat-tab>
+    </mat-tab-group>
+    </div>
+  <div mat-dialog-actions style="justify-content: center;">
+    <button mat-button color="warn" mat-dialog-close>Cancel</button>
+</div>
+</ng-template>

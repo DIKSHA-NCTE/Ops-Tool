@@ -1,0 +1,113 @@
+{
+  "request": {
+    "type": "input",
+    "subType": "organizations",
+    "action": "update",
+    "component": "tools",
+    "framework": "*",
+    "rootOrgId": "*",
+    "data": {
+      "templateName": "defaultTemplate",
+      "action": "update",
+      "fields": [
+        {
+          "index": 0,
+          "label": "Tenants",
+          "description": "Choose from a list of tenants",
+          "placeholder": "Choose a Tenant",
+          "property": "organisationId",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "multiple": false,
+          "api": {
+            "type": "tenant-search",
+            "body": "{ \"request\": { \"filters\": { \"isRootOrg\": true, \"isTenant\": true }, \"offset\": 0, \"limit\": 1000, \"sort_by\": {}, \"fields\": [\"identifier\", \"orgName\", \"channel\", \"isTenant\", \"isRootOrg\"] } }",
+            "token": true
+          }
+        },
+        {
+          "index": 1,
+          "label": "Org Name",
+          "description": "Org name",
+          "placeholder": "Enter org name",
+          "property": "orgName",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 2,
+          "label": "Description",
+          "description": "Org description",
+          "placeholder": "Enter org description",
+          "property": "description",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 3,
+          "label": "Org Type",
+          "description": "Choose an org type",
+          "placeholder": "Choose an org type",
+          "property": "organisationType",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "constants-search",
+            "body": "{ \"entity\": [\"orgType\"] }"
+          }
+        },
+        {
+          "index": 4,
+          "label": "Is Tenant?",
+          "description": "Is Tenant?",
+          "placeholder": "Is Tenant?",
+          "property": "isTenant",
+          "dataType": "boolean",
+          "inputType": "radio",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "constants-search",
+            "body": "{ \"entity\": [\"boolean\"] }"
+          }
+        },
+        {
+          "index": 5,
+          "label": "External ID",
+          "description": "Enter external id",
+          "placeholder": "Enter external id",
+          "property": "externalId",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<div class="relative select-component" [hidden]="!visible">
+  <mat-label class="form-field-label">{{label}} <span [hidden]="!required" class="required">*</span></mat-label>
+  <mat-select-autocomplete class="w-100" [placeholder]="placeholder" [errorMsg]="errorMessage"
+    [showErrorMsg]="showError" [options]="options" [display]="'label'" [value]="'value'" [multiple]="isMultiple"
+    [disabled]="!editable" [labelCount]="1" [appearance]="appearance" [selectedOptions]="selectedOptions" (selectionChange)="getSelectedOptions($event)">
+  </mat-select-autocomplete>
+</div>

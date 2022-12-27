@@ -1,0 +1,16 @@
+{
+    "database": {
+      "connectionLimit": 10,
+      "host": "localhost",
+      "user": "root",
+      "password": "<DB-password>",
+      "database": "ETBPROCESS"
+    },
+    "server": {
+      "port": 3000
+    },
+    "keycloak": {
+      "auth_server_url": "<host for adopter's instance>/auth",
+      "resource": "<ops tool keycloak client id>"
+    }
+  }

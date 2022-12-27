@@ -1,0 +1,140 @@
+{
+  "request": {
+    "type": "input",
+    "subType": "organizations",
+    "action": "create",
+    "component": "tools",
+    "framework": "*",
+    "rootOrgId": "*",
+    "data": {
+      "templateName": "defaultTemplate",
+      "action": "create",
+      "fields": [
+        {
+          "index": 0,
+          "label": "Org Name",
+          "description": "Org name",
+          "placeholder": "Enter org name",
+          "property": "orgName",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "multiple": false
+        },
+        {
+          "index": 1,
+          "label": "Description",
+          "description": "Org description",
+          "placeholder": "Enter org description",
+          "property": "description",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 2,
+          "label": "Channel Name",
+          "description": "Channel name",
+          "placeholder": "Enter channel name",
+          "property": "channel",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "multiple": false
+        },
+        {
+          "index": 3,
+          "label": "Org Type",
+          "description": "Choose an org type",
+          "placeholder": "Choose an org type",
+          "property": "organisationType",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": false,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "constants-search",
+            "body": "{ \"entity\": [\"orgType\"] }"
+          }
+        },
+        {
+          "index": 4,
+          "label": "Is Tenant?",
+          "description": "Is Tenant?",
+          "placeholder": "Is Tenant?",
+          "property": "isTenant",
+          "dataType": "boolean",
+          "inputType": "radio",
+          "options": [],
+          "visible": false,
+          "editable": true,
+          "required": true,
+          "multiple": false,
+          "api": {
+            "type": "constants-search",
+            "body": "{ \"entity\": [\"boolean\"] }"
+          }
+        },
+        {
+          "index": 5,
+          "label": "External ID",
+          "description": "Enter external id",
+          "placeholder": "Enter external id",
+          "property": "externalId",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": false,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        },
+        {
+          "index": 6,
+          "label": "Location Type",
+          "description": "Choose a location type",
+          "placeholder": "Choose a location type",
+          "property": "type",
+          "dataType": "array",
+          "inputType": "search",
+          "options": [],
+          "visible": false,
+          "editable": true,
+          "required": false,
+          "multiple": false,
+          "api": {
+            "type": "constants-search",
+            "body": "{ \"entity\": [\"locationType\"] }"
+          }
+        },
+        {
+          "index": 7,
+          "label": "Location ID",
+          "description": "Enter location id",
+          "placeholder": "Enter location id",
+          "property": "id",
+          "dataType": "string",
+          "inputType": "text",
+          "options": [],
+          "visible": false,
+          "editable": true,
+          "required": false,
+          "multiple": false
+        }
+      ]
+    }
+  }
+}

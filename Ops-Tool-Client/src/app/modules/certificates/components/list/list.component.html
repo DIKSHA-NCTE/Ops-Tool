@@ -1,0 +1,17 @@
+<div class="certificate">
+  <div class="container-fluid p-0 mt-5 mb-2">
+
+    <div class="row modules" *ngIf="modules.length > 0">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 pb-4" *ngFor="let item of modules">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <a routerLink="{{item.url}}" class="btn btn-primary btn-lg btn-pill">Explore
+              <i class="material-icons">trending_flat</i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,359 @@
+<div class="row">
+  <div class="col-sm-4 col-12">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+    </mat-form-field>
+  </div>
+  <div class="col-sm-4 col-12 text-center">
+    <div class="records-div"> {{recordsCount}} Records Found</div>
+  </div>
+  <div class="col-sm-4 col-12 text-end" *ngIf="columnsToDisplay.length > 0">
+    <app-download-excel [data]="dataSource" [file]="filename"></app-download-excel>
+  </div>
+</div>
+<div class=" row table-responsive">
+  <table mat-table [dataSource]="dataSource" matSort class="col-12" multiTemplateDataRows>
+    <ng-container [matColumnDef]="column.columnDef" *ngFor="let column of columnsToDisplay;let i=index">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column.header}}
+      </th>
+      <td mat-cell *matCellDef="let element" [ngStyle]="column.styles">
+        <div *ngIf="column.columnDef!=='action' && column.columnDef!=='cert_download' && column.columnDef!=='edit_user' && column.columnDef!=='view_form' && column.columnDef!=='view_cert'" [innerHTML]="getValueByType(element[column.columnDef])"></div>
+        <div *ngIf="column.columnDef==='action'">
+          <button class= "popup-button" type="button" (click)="openDialogFirst(element, 'progress', element.batchId, element.courseId, element.channel)" mat-raised-button color="primary"
+          cdkFocusInitial>Exhaust Reports
+          </button>
+        </div>
+        <div *ngIf="column.columnDef==='cert_download' && getValueByType(element['certificateUrl'])!=='-----'">
+          <button class= "download-button" type="button" (click)="downloadCertificate(element)" mat-icon-button
+          cdkFocusInitial><mat-icon>cloud_download</mat-icon>
+          </button>
+        </div>
+        <div *ngIf="(column.columnDef==='edit_user') && displayActions">
+            <a href="javascript:void(0)" (click)="openEditUserDialog(element)" title="Edit User">
+              <mat-icon>edit</mat-icon>
+          </a>
+          &nbsp;
+          <a *ngIf="(getValueByType(element['rootOrgName'])!= custodianOrg)" href="javascript:void(0)" (click)="openUpdateRoleDialog(element)" title="Update Role">
+            <mat-icon>account_box</mat-icon>
+        </a>
+        &nbsp;
+        <a *ngIf="(getValueByType(element['rootOrgName'])!= custodianOrg)" href="javascript:void(0)" (click)="openUpdateExtIdDialog(element)" title="Update External ID">
+          <mat-icon>launch</mat-icon>
+      </a>
+        </div>
+        <div *ngIf="column.columnDef==='view_form'">
+          <a href="javascript:void(0)" (click)="openFormReadDialog(element)" title="View">
+            <mat-icon>visibility</mat-icon>
+        </a>
+        </div>
+        <div *ngIf="column.columnDef==='view_cert' && element.certificateTemplate !== 'does not exist'">
+          <a href="{{element.certificateTemplate}}" target="_blank" title="View Certificate">
+            <mat-icon>visibility</mat-icon>
+        </a>
+        </div>
+      </td>
+      <!--Exhaust Report Dialog-->
+      <ng-template #popupTemplate>
+        <h1 mat-dialog-title> Get Exhaust Reports for BatchId: {{batchId}} </h1>
+        <div class="mat-app-background basic-container">
+        <mat-tab-group (selectedTabChange)="onClick($event)">
+          <mat-tab label="Get Progress Exhaust Report">
+            <div *ngIf="progressExhaustArr == undefined"><mat-card-content><mat-card-title></mat-card-title></mat-card-content></div>
+            <div *ngIf="progressExhaustArr.length == 0"><mat-card-content><mat-card-title style="margin-top: 15%!important;
+              margin-left: 15%;">No reports found</mat-card-title></mat-card-content></div>
+            <div *ngIf="progressExhaustArr.length > 0">
+            <mat-card class="example-card" *ngFor="let element of progressExhaustArr">
+            <mat-card-content>
+                <mat-card-subtitle>requestId: {{element.requestId}}</mat-card-subtitle>
+                <mat-card-subtitle>dataset: {{element.dataset}}</mat-card-subtitle>
+                <mat-card-subtitle>status: {{element.status}}</mat-card-subtitle>
+                <mat-card-subtitle>courseId: {{element.courseId}}</mat-card-subtitle>
+                <mat-card-subtitle>batchId: {{element.batchId}}</mat-card-subtitle>
+                <mat-card-subtitle>last updated: {{element.lastUpdated}}</mat-card-subtitle>
+            </mat-card-content>
+            <mat-divider inset></mat-divider>
+            <mat-card-actions>
+              <button mat-raised-button color="primary" (click)="downloadExhaustReport(element.report_url)">DOWNLOAD</button>
+            </mat-card-actions>
+            <mat-card-footer *ngIf="isDownloading == true">
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </mat-card-footer>
+          </mat-card> 
+            </div>
+        </mat-tab>
+          <mat-tab label="Get User-Info Exhaust Report">
+            <div *ngIf="progressExhaustArr == undefined"><mat-card-content><mat-card-title></mat-card-title></mat-card-content></div>
+            <div *ngIf="progressExhaustArr.length == 0"><mat-card-content><mat-card-title style="margin-top: 15%!important;
+              margin-left: 15%;">No reports found</mat-card-title></mat-card-content></div>
+            <div *ngIf="progressExhaustArr.length > 0">
+              <mat-card class="example-card" *ngFor="let element of progressExhaustArr">
+              <mat-card-content>
+                  <mat-card-subtitle>requestId: {{element.requestId}}</mat-card-subtitle>
+                  <mat-card-subtitle>dataset: {{element.dataset}}</mat-card-subtitle>
+                  <mat-card-subtitle>status: {{element.status}}</mat-card-subtitle>
+                  <mat-card-subtitle>courseId: {{element.courseId}}</mat-card-subtitle>
+                  <mat-card-subtitle>batchId: {{element.batchId}}</mat-card-subtitle>
+                  <mat-card-subtitle>last updated: {{element.lastUpdated}}</mat-card-subtitle>
+              </mat-card-content>
+              <mat-divider inset></mat-divider>
+              <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="downloadExhaustReport(element.report_url)">DOWNLOAD</button>
+              </mat-card-actions>
+              <mat-card-footer *ngIf="isDownloading == true">
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+              </mat-card-footer>
+            </mat-card> 
+              </div> 
+          </mat-tab>
+          <mat-tab label="Get Response Exhaust Report">
+            <div *ngIf="progressExhaustArr == undefined"><mat-card-content><mat-card-title></mat-card-title></mat-card-content></div>
+            <div *ngIf="progressExhaustArr.length == 0"><mat-card-content><mat-card-title style="margin-top: 15%!important;
+              margin-left: 15%;">No reports found</mat-card-title></mat-card-content></div>
+            <div *ngIf="progressExhaustArr.length > 0">
+              <mat-card class="example-card" *ngFor="let element of progressExhaustArr">
+              <mat-card-content>
+                  <mat-card-subtitle>requestId: {{element.requestId}}</mat-card-subtitle>
+                  <mat-card-subtitle>dataset: {{element.dataset}}</mat-card-subtitle>
+                  <mat-card-subtitle>status: {{element.status}}</mat-card-subtitle>
+                  <mat-card-subtitle>courseId: {{element.courseId}}</mat-card-subtitle>
+                  <mat-card-subtitle>batchId: {{element.batchId}}</mat-card-subtitle>
+                  <mat-card-subtitle>last updated: {{element.lastUpdated}}</mat-card-subtitle>
+              </mat-card-content>
+              <mat-divider inset></mat-divider>
+              <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="downloadExhaustReport(element.report_url)">DOWNLOAD</button>
+              </mat-card-actions>
+              <mat-card-footer *ngIf="isDownloading == true">
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+              </mat-card-footer>
+            </mat-card> 
+              </div> 
+          </mat-tab>
+        </mat-tab-group>
+        </div>
+      <div mat-dialog-actions style="justify-content: center;">
+        <button mat-button color="warn" mat-dialog-close>Cancel</button>
+    </div>
+    </ng-template>
+    </ng-container>
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+        <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12" *ngFor="let item of element | keyvalue">
+              <div class="row">
+                <div class="col-12">
+                  {{item.key}}
+                </div>
+                <div class="col-12">
+                  <div [innerHTML]="getValueType(item.value)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row"
+      [class.example-expanded-row]="expandedElement === row"
+      (click)="expandedElement = expandedElement === row ? null : row"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[50, 100, 250, 500]"></mat-paginator>
+</div>
+
+<!--Edit User Dialog-->
+<ng-template #editUserTemplate let-data>
+  <form class="form-container" [formGroup]="editUserForm" (submit)="updateUserDetail()">
+      <h1 mat-dialog-title>{{data.formLabel}}</h1>
+      <div class="row">
+      <div class="col-md-12">
+          <mat-form-field class="form-field" appearance="fill">
+              <mat-label>User ID</mat-label>
+              <input readonly matInput #input [formControl]="userId" [value]="data.identifier" [(ngModel)]="data.identifier">
+          </mat-form-field>
+        </div>
+      <div class="col-md-6">
+          <mat-form-field class="form-field" appearance="fill">
+              <mat-label>Username</mat-label>
+              <input readonly matInput #input [formControl]="userName" [value]="data.userName" [(ngModel)]="data.userName">
+          </mat-form-field>
+        </div>
+      <div class="col-md-6">
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Root Org ID</mat-label>
+            <input readonly matInput #input [formControl]="rootOrgId" [value]="data.rootOrgId" [(ngModel)]="data.rootOrgId">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+          <mat-form-field class="form-field" appearance="fill">
+              <mat-label>First Name</mat-label>
+              <input matInput #input [formControl]="firstName" [value]="data.firstName" [(ngModel)]="data.firstName" (change)="userDetailPayload('firstName')">
+              <mat-error *ngIf="firstName.hasError('required')">Firstname is required</mat-error>
+          </mat-form-field>
+        </div>
+      <div class="col-md-6">
+          <mat-form-field class="form-field" appearance="fill">
+              <mat-label>Last Name</mat-label>
+              <input matInput #input [formControl]="lastName" [value]="data.lastName" [(ngModel)]="data.lastName" (change)="userDetailPayload('lastName')">
+          </mat-form-field>
+        </div>
+      <div class="col-md-6">
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput #input [formControl]="email" [value]="data.email" [(ngModel)]="data.email" (change)="userDetailPayload('email')">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Phone Number</mat-label>
+            <input matInput #input [formControl]="phone" [value]="data.phone" [(ngModel)]="data.phone" (change)="userDetailPayload('phone')">
+        </mat-form-field>
+      </div>
+      </div>
+      <div mat-dialog-actions>
+          <button mat-button color="warn" mat-dialog-close>Cancel</button>
+          <button [disabled]="(!editUserForm.valid) || editUserForm.pristine" type="submit" mat-raised-button color="primary"
+              cdkFocusInitial>Submit</button>
+      </div>
+  </form>
+</ng-template>
+
+<!--Update User Role Dialog-->
+<ng-template #updateRoleTemplate let-data>
+  <form class="form-container" [formGroup]="updateRoleForm" (submit)="updateUserRole()">
+      <h1 mat-dialog-title>{{data.formLabel}}</h1>
+      <div class="row">
+      <div class="col-md-6">
+          <mat-form-field class="form-field" appearance="fill">
+              <mat-label>User ID</mat-label>
+              <input readonly matInput #input [formControl]="userId" [value]="data.identifier" [(ngModel)]="data.identifier">
+          </mat-form-field>
+        </div>
+      <div class="col-md-6">
+          <mat-form-field class="form-field" appearance="fill">
+              <mat-label>Username</mat-label>
+              <input readonly matInput #input [formControl]="userName" [value]="data.userName" [(ngModel)]="data.userName">
+          </mat-form-field>
+        </div>
+      <div class="col-md-6">
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Root Org ID</mat-label>
+            <input readonly matInput #input [formControl]="rootOrgId" [value]="data.rootOrgId" [(ngModel)]="data.rootOrgId">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+          <mat-form-field class="form-field" appearance="fill">
+              <mat-label>Root Org Name</mat-label>
+              <input readonly matInput #input [formControl]="orgName" [value]="data.rootOrg.orgName" [(ngModel)]="data.rootOrg.orgName">
+          </mat-form-field>
+        </div>
+      <div class="col-md-12">
+          <mat-form-field class="form-field" appearance="fill">
+              <mat-label>Roles</mat-label>
+              <mat-select [formControl]="roles" [(ngModel)]="data.organisations[0]['roles']" multiple>
+                  <mat-option *ngFor="let role of defaultRoles" [value]="role">{{role}}
+                  </mat-option>
+              </mat-select>
+              <mat-error *ngIf="roles.hasError('required')">Roles are required</mat-error>
+          </mat-form-field>
+        </div>
+      <div class="col-md-12">
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label>Admin Username</mat-label>
+          <input matInput #input [formControl]="adminDetails" [(ngModel)]="data.adminDetails">
+          <mat-error *ngIf="adminDetails.hasError('required')">Admin username is required</mat-error>
+      </mat-form-field>
+      </div>
+      </div>
+      <div mat-dialog-actions>
+          <button mat-button color="warn" mat-dialog-close>Cancel</button>
+          <button [disabled]="!updateRoleForm.valid" type="submit" mat-raised-button color="primary"
+              cdkFocusInitial>Submit</button>
+      </div>
+  </form>
+</ng-template>
+
+<!--Update External ID Dialog-->
+<ng-template #updateExtIdTemplate let-data>
+  <form class="form-container" [formGroup]="updateExtIdForm" (submit)="updateExtId()">
+      <h1 mat-dialog-title>{{data.formLabel}}</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="form-field" appearance="fill">
+              <mat-label>User ID</mat-label>
+              <input readonly matInput #input [formControl]="userId" [value]="data.identifier" [(ngModel)]="data.identifier">
+          </mat-form-field>
+        </div>
+      <div class="col-md-6">
+          <mat-form-field class="form-field" appearance="fill">
+              <mat-label>Username</mat-label>
+              <input readonly matInput #input [formControl]="userName" [value]="data.userName" [(ngModel)]="data.userName">
+          </mat-form-field>
+        </div>
+      <div class="col-md-6">
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Root Org ID</mat-label>
+            <input readonly matInput #input [formControl]="rootOrgId" [value]="data.rootOrgId" [(ngModel)]="data.rootOrgId">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+          <mat-form-field class="form-field" appearance="fill">
+              <mat-label>Root Org Name</mat-label>
+              <input readonly matInput #input [formControl]="orgName" [value]="data.rootOrg.orgName" [(ngModel)]="data.rootOrg.orgName">
+          </mat-form-field>
+        </div>
+        <div class="col-md-12">
+          <mat-form-field class="form-field" appearance="fill">
+            <mat-label>ID Type</mat-label>
+            <mat-select [formControl]="idType">
+                <mat-option *ngFor="let idType of idTypes" [value]="idType">{{idType}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="idType.hasError('required')">ID Type is required</mat-error>
+        </mat-form-field>
+          </div>
+      <div class="col-md-12">
+          <mat-form-field class="form-field" appearance="fill">
+              <mat-label>ID</mat-label>
+              <input matInput #input [formControl]="id">
+              <mat-error *ngIf="id.hasError('required')">ID is required</mat-error>
+          </mat-form-field>
+        </div>
+      <div class="col-md-12">
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label>Provider</mat-label>
+            <input matInput #input [formControl]="provider">
+            <mat-error *ngIf="provider.hasError('required')">Provider is required</mat-error>
+        </mat-form-field>
+      </div>
+      </div>
+      <div mat-dialog-actions>
+          <button mat-button color="warn" mat-dialog-close>Cancel</button>
+          <button [disabled]="!updateExtIdForm.valid" type="submit" mat-raised-button color="primary"
+              cdkFocusInitial>Submit</button>
+      </div>
+  </form>
+</ng-template>
+
+<!--Form Read Dialog-->
+<ng-template #formReadTemplate let-data>
+  <div class="row">
+      <h2 mat-dialog-title>{{data.formLabel}}</h2>
+  </div>
+    <mat-dialog-content class="mat-app-background">
+        <ngx-json-viewer [json]="data.formData" [depth]="3"></ngx-json-viewer>
+    </mat-dialog-content>
+    <mat-dialog-actions align="center">
+      <button mat-button color="warn" mat-dialog-close>Close</button>
+      <button type="button" mat-raised-button color="primary" cdkFocusInitial [cdkCopyToClipboard]="data.formData | json" [cdkCopyToClipboardAttempts]="5">Copy</button>
+    </mat-dialog-actions>
+</ng-template>

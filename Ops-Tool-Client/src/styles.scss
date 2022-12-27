@@ -1,0 +1,280 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+@font-face {
+  font-family: 'NotoSans-Thin';
+  src: url('./assets/fonts/NotoSans-Thin.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NotoSans-ExtraLight';
+  src: url('./assets/fonts/NotoSans-ExtraLight.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NotoSans-Light';
+  src: url('./assets/fonts/NotoSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NotoSans-Regular';
+  src: url('./assets/fonts/NotoSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NotoSans-Medium';
+  src: url('./assets/fonts/NotoSans-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NotoSans-SemiBold';
+  src: url('./assets/fonts/NotoSans-SemiBold.ttf') format('truetype');
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+  font-family: "NotoSans-Light", Helvetica, sans-serif !important;
+}
+
+body {
+  margin: 0;
+  background: #f0f3f5;
+}
+
+
+h1 {
+  font-size: 2.2rem;
+  margin: 1rem 0 1.25rem;
+  font-family: 'NotoSans-Medium', Helvetica, sans-serif !important;
+}
+
+h5 {
+  font-family: 'NotoSans-Light', Helvetica, sans-serif !important;
+}
+
+
+mat-card-header .mat-card-header-text {
+  margin: auto;
+}
+
+mat-card {
+  opacity: 0.75;
+  min-height: 150px;
+  border-radius: 0.75rem !important;
+}
+
+.mat-card-header,
+div,
+p,
+span {
+  font-family: 'NotoSans-Regular', Helvetica, sans-serif !important;
+}
+
+;
+
+a.btn {
+  font-family: 'NotoSans-Light', Helvetica, sans-serif !important;
+}
+
+.mat-dialog-container {
+  border-radius: 1.25rem !important;
+}
+
+h2.mat-dialog-title {
+  padding: 16px 24px;
+  color: #666666;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: rgb(13 202 240 / 25%) !important;
+  border-radius: 1.25rem;
+}
+
+.mat-radio-button {
+  padding: 0 24px;
+}
+
+.mat-dialog-content {
+  min-height: 70px;
+}
+
+input.mat-input-element {
+  line-height: 35px;
+  margin-top: -0.9em;
+}
+
+.close-icon {
+  float: right;
+  line-height: inherit;
+  cursor: pointer;
+}
+
+pre code {
+  background-color: #eee;
+  border: 1px solid #ddd;
+  display: block;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.white-space {
+  white-space: initial;
+}
+
+.copy-clipboard {
+  border: 1px solid;
+  padding: 16px;
+  margin-right: -10px;
+  margin-top: -12px;
+  cursor: pointer;
+}
+
+.wrapper {
+  border-radius: 1.25rem;
+  background: #fff;
+  padding: 1rem 1.65rem !important;
+  box-shadow: 1px 3px 9px 0 #b2b0b0;
+
+  .mat-card {
+    border-radius: 1.25rem;
+  }
+
+  .mat-content {
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+
+.select-component {
+  .mat-form-field {
+    width: 100% !important;
+  }
+}
+
+.mat-date-range-input-start-wrapper {
+  line-height: 29px;
+}
+
+.required {
+  color: red;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+tr.example-detail-row {
+  height: 0 !important;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+  word-break: break-word;
+}
+
+.mat-cell,
+.mat-header-cell,
+.mat-footer-cell {
+  word-break: break-word;
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+
+.mat-cell:first-of-type,
+.mat-header-cell:first-of-type,
+.mat-footer-cell:first-of-type,
+.mat-cell:last-of-type,
+.mat-header-cell:last-of-type,
+.mat-footer-cell:last-of-type,
+.mat-cell,
+.mat-header-cell,
+.mat-footer-cell {
+  padding: 0 10px !important;
+  font-size: 12px;
+}
+
+.example-element-detail div.row {
+  border: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.cdk-overlay-pane,
+.cdk-overlay-container {
+  z-index: 1114 !important;
+}
+
+.table-responsive table tbody tr,
+.table-responsive table tbody tr td,
+.pointer {
+  cursor: pointer;
+}
+
+.mat-tab-group {
+  flex-direction: row !important;
+}
+.mat-tab-header {
+  border-bottom: none;
+}
+.mat-tab-header-pagination {
+  display: none !important;
+}
+.mat-tab-labels {
+  flex-direction: column !important;
+}
+.mat-tab-label-active {
+  background-color: #3f51b5;
+  color: #fff;
+}
+.mat-ink-bar {
+  height: 100%;
+  left: 98% !important;
+}
+.mat-tab-body-wrapper {
+  flex: 1 1 auto;
+  height: 45vh !important;
+}
+.copy_button {
+  margin-top: 30px !important;
+}

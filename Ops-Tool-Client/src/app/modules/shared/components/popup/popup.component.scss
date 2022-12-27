@@ -1,0 +1,23 @@
+.popup-button {
+    font-size: 12px;
+  }
+  
+  .mat-tab-group {
+    flex-direction: column;
+  }
+  .mat-tab-header {
+    border-bottom: none;
+  }
+  .mat-tab-header-pagination {
+    display: none !important;
+  }
+  .mat-tab-labels {
+    flex-direction: row;
+  }
+  .mat-ink-bar {
+    height: 100%;
+    left: 98% !important;
+  }
+  .mat-tab-body-wrapper {
+    flex: 1 1 auto;
+  }

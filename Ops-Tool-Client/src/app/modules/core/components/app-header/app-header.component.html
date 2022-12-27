@@ -1,0 +1,27 @@
+<header id="header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="/assets/images/logo.png" alt="App logo" width="103" height="58">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav d-flex flex-row justify-content-end w-100">
+          <li class="nav-item dropdown">
+            <a href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+              class="nav-link dropdown-toggle">
+              <span class="username">Welcome, <b>{{user}}</b></span>
+              <i class="material-icons" style="top: 5px; left: 5px; font-size: 26px;">person_pin</i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item pointer" id="user-token" matButton (click)="openDialog()">User Token</a>
+              <a class="dropdown-item pointer" id="logout" (click)="logout()">Logout</a></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
