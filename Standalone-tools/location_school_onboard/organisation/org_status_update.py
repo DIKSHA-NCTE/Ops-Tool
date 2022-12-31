@@ -2,6 +2,10 @@
 import requests
 import json
 import token_generate
+from configparser import ConfigParser
+
+config = ConfigParser()
+config.read('org_config.ini')
 
 # List of organisation ids needs to be passed here. The existing ids are the sample id given here, these ids needs to be replaced with the actual ids.
 school_ids = [
@@ -12,9 +16,8 @@ school_ids = [
 "01324218482085068834217"]
 
 # Endpoint of the org status update API
-url = "https://diksha.gov.in/api/org/v1/status/update"
+url = token_generate.host + config['API']['org_status_update']
 headers = {
-  'Accept': 'application/json',
   'Content-Type': 'application/json',
   'Authorization': token_generate.auth_token,
   'x-authenticated-user-token': token_generate.user_token

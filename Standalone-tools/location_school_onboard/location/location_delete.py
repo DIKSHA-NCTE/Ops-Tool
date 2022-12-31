@@ -1,5 +1,10 @@
 import requests
 import token_generate
+from configparser import ConfigParser
+
+config = ConfigParser()
+config.read('location_config.ini')
+
 headers = {
         'Content-Type': 'application/json',
         'Authorization': token_generate.auth_token,
@@ -15,6 +20,6 @@ location_ids = ["8a9bafaf-e9c9-4cfe-bc7f-48883669b00d",
 payload = "{}"
 for count, locationid in enumerate(location_ids):
 
-    url = token_generate.host + "/api/data/v1/location/delete/" + locationid	#The endpoint of the location delete API followed by the location id 
+    url = token_generate.host + config['API']['location_delete'] + locationid	#The endpoint of the location delete API followed by the location id
     response = requests.request("DELETE", url, headers=headers, data=payload, timeout=20).json()
     print(count, response)

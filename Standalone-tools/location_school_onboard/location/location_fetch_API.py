@@ -3,12 +3,14 @@ import requests
 import json
 import token_generate as tg
 import pandas as pd
-# import pdb
+from configparser import ConfigParser
 
+config = ConfigParser()
+config.read('location_config.ini')
 
 state_name = input("Please provide the state name to fetch the State's location data:: ")
 
-# A dictionary of all the State location name and it corresponding Id
+# A dictionary of all the State location name and it corresponding Id, the currect dict is as per Production data
 State_dict = {"Jammu And Kashmir": "4a994d9d-5677-40a8-83eb-e3c5eec73b92",
               "Himachal Pradesh": "3332bb89-63e1-4e05-9927-25df984aec1f",
               "Punjab": "f82b3f03-76d2-40e4-927e-adda5aa053b1",
@@ -48,7 +50,7 @@ State_dict = {"Jammu And Kashmir": "4a994d9d-5677-40a8-83eb-e3c5eec73b92",
 
 
 # Endpoint of the location search API
-url = tg.host + "/api/data/v1/location/search?cache=false"
+url = tg.host + config['API']['location_search']
 headers = {
     'Content-Type': 'application/json',
     'Authorization': tg.auth_token
@@ -70,7 +72,7 @@ def locationread(parentId):
     return response
 
 #Path to write the output data
-root_path = "/home/tanweer/Downloads/Org&location/api_location_data"
+root_path = config['Path']['write_path']
 output_path = os.path.join(root_path, state_name)
 isExist = os.path.exists(output_path)
 if not isExist:
@@ -81,7 +83,6 @@ locationread_dist = locationread(State_dict[state_name])
 dist = pd.DataFrame(locationread_dist)
 dist.to_csv(output_path + "/district.csv", index=False)
 dist_ids = list(dist["id"])
-# pdb.set_trace()
 
 # locationread function gets called for Block data 
 locationread_block = locationread(dist_ids)

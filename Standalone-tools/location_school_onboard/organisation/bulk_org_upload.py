@@ -4,16 +4,19 @@ import token_generate
 import time
 from datetime import datetime
 import logging
+from configparser import ConfigParser
 
+config = ConfigParser()
+config.read('org_config.ini')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 f = logging.Formatter('%(asctime)-15s - %(levelname)s - %(message)s')
-fh = logging.FileHandler('/home/tanweer/pycharm_diksha/log/bulk_org_upload'+datetime.now().strftime('%H_%M_%d_%m_%Y')+'.log')
+fh = logging.FileHandler('../log/org_upload'+datetime.now().strftime('%H_%M_%d_%m_%Y')+'.log')
 fh.setFormatter(f)
 logger.addHandler(fh)
 
 # Endpoint for Organisation data upload API
-url = token_generate.host + "/api/org/v1/upload"
+url = token_generate.host + config['API']['org_upload']
 
 # List of files consists of organisation data in a format to upload
 file_path = [

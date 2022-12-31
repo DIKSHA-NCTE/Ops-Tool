@@ -1,12 +1,12 @@
 # This script would structure the input sheet received from the State side in order to upload the data to DIKSHA
 import pandas as pd
 import os
-from utilities.split_csv_file import split
+from split_csv_file import split
 from configparser import ConfigParser
 
 config = ConfigParser()
 config.read('config.ini')
-filename = config['File']['filename']
+filename = config['Path']['filename']
 if os.path.isfile(filename) is False:
   raise Exception("File not found")
 output_path = os.path.dirname(filename)
@@ -23,6 +23,7 @@ elif extension == '.csv':
 else:
     raise Exception("File format not supported, Please provide the input file in csv or xlsx format")
 
+# Remove the leading and trailing spaces
 df_obj = school_master.select_dtypes(['object'])
 school_master[df_obj.columns] = df_obj.apply(lambda x: x.str.strip())
 

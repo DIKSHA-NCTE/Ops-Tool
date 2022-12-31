@@ -4,17 +4,20 @@ import pandas as pd
 import requests
 import json
 import token_generate
+from configparser import ConfigParser
 
+config = ConfigParser()
+config.read('org_config.ini')
 
 # List of organisation's data file's path
 file_path = [
-             "/home/tanweer/Downloads/Chhattisgarh_v2/org/School_org_10.csv"]
+             "/Downloads/Chhattisgarh_v2/org/School_org_10.csv"]
 headers = {
     'Content-Type': 'application/json',
     'Authorization': token_generate.auth_token
 }
 # Endpoint for the Organisation search API
-url = token_generate.host + "/api/org/v2/search?cache=false"
+url = token_generate.host + config['API']['org_search']
 
 for count, file in enumerate(file_path):
     school_data = pd.read_csv(file, dtype={"locationCode": str, "externalId": str})
