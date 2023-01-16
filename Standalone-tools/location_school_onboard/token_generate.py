@@ -1,19 +1,12 @@
 import requests
 import sys
 import pyperclip
-from tokens import hosts, client_id_value, secret_keys, authorization_token, user_name, keycloak_api
+import inquirer
+from tokens import hosts, client_id_value, secret_keys, authorization_token, user_name, dev_user_name, keycloak_api
 
-i = 1
-while i > 0:
-    try:
-        env_selector = int(input("Enter the environment, 0/1/2/3 for Dev Diksha, Staging, preprod and prod respectively: "))
-        if 0 <= env_selector < len(hosts):
-            i -=1
-        else:
-            print("The given value is out of range of the environment list!")
-    except:
-        print("Invalid value provided!")
-
+questions = [inquirer.List('host', message="Please select the hosts", choices=hosts,),]
+selection = inquirer.prompt(questions)
+env_selector = hosts.index(selection['host'])
 host = hosts[env_selector]
 client_id = client_id_value[env_selector]
 secret_key = secret_keys[env_selector]
@@ -22,6 +15,9 @@ auth_token = "bearer " + authorization_token[env_selector]
 
 username_ask = input("You want to use default USERNAME? press y/Y to accept: ")
 if username_ask.lower() == 'y':
+    if env_selector == 0:
+        username = dev_user_name
+    else:
         username = user_name
 else:
     username = input("Please provide the USERNAME: ")
