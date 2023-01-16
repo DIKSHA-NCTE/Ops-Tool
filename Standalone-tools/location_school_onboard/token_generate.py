@@ -15,10 +15,7 @@ auth_token = "bearer " + authorization_token[env_selector]
 
 username_ask = input("You want to use default USERNAME? press y/Y to accept: ")
 if username_ask.lower() == 'y':
-    if env_selector == 0:
-        username = dev_user_name
-    else:
-        username = user_name
+    username = user_name
 else:
     username = input("Please provide the USERNAME: ")
 payload = "client_id=" + client_id + "&username=" + username + "&password=&grant_type=password&client_secret=" + secret_key
