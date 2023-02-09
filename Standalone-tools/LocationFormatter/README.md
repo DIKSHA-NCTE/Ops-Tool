@@ -1,3 +1,6 @@
+# Introduction
+This tool will format location table data dump provided in CSV file and split each state location data into separate files keeping the name of the file same as state name.
+
 Update the below parameters under the file LocationFormatter.sh/LocationFormatter.bat
 
 1. Update JAVA_HOME and LIB_PATH as per your system.
