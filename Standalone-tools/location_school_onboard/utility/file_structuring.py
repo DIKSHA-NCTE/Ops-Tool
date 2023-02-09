@@ -13,8 +13,8 @@ output_path = os.path.dirname(filename)
 print("Path to write output files", output_path)
 extension = os.path.splitext(filename)[1]
 
-dtypes={"SCHOOL_CODE": str, "BLOCK_CODE": str, "cluster_name": str, "school_name": str,"DISTRICT_CODE": str,
-        "District_Name": str, "udise_block_code": str,"block_name": str, "CLUSTER_CODE": str}
+dtypes={"SCHOOL_CODE": str, "BLOCK_CODE": str, "CLUSTER_CODE": str, "DISTRICT_CODE": str, "SCHOOL_NAME": str,
+        "DISTRICT_NAME": str, "BLOCK_NAME": str, "CLUSTER_NAME": str}
 school_master = pd.DataFrame
 if extension == '.xlsx':
     school_master = pd.read_excel(filename, dtype= dtypes)
