@@ -38,6 +38,9 @@ Installing Ops Tool requires three primary software components:
     git clone https://github.com/DIKSHA-NCTE/Diksha-Support-Tool.git
     ```
 
+> ***Note***: The setup steps from step 2 to step 7 can also be performed by an automated script (setup.sh) available in the root directory.
+  ---
+
 2. Install required dependencies
 
     1. Ops Tool web application
